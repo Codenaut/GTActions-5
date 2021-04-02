@@ -1,5 +1,3 @@
-#include Lucky_Wheel.ahk
-
 EmptySession() {
     return
 }
@@ -48,12 +46,11 @@ BusyWaitAntiKick() {
 }
 
 PressKey:
-    ;Press("Enter", 0)
+    Press("Enter", 0)
 return
 
 PauseAntiKick() {
-    ;Pause
-    ;f10::Pause ???
+    Pause
 }
 
 CallLamar()
