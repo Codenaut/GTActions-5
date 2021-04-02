@@ -40,5 +40,5 @@ Gui, Add, Button, gNetworkAdapter x12 y769 w150 h30 , Network Adapter
 Gui, Add, Button, gFirewallRule x12 y809 w150 h30 , Firewall Rule
 Gui, Add, Button, gWinCasinoCar x12 y959 w150 h30 , Win Casino Car
 Gui, Add, GroupBox, x2 y709 w170 h140 , Meeta
-Gui, Show, h1024 w181 Center, GTActions 5: Online
+Gui, Show, x3432 y1 h1006 w181, GTActions 5: Online ;gtao on main, hotkeys window on left side of monitor to my right
 return
