@@ -38,7 +38,7 @@ ButtonToggle(ButtonVar, EnableButt := 0) {
 Press(byRef Butt, Duration:=20)
 {
     Send, {%Butt% down}
-    Sleep 10
+    Sleep 20
     Send, {%Butt% up}
 
     if(Duration > 0) {

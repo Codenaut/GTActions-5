@@ -20,7 +20,7 @@ CoordMode, ToolTip, Screen
 Spin2WinCar(xx := 485, yy := 45, delay := 2693) { ;Edit this value to change the spinning speed: higher value = slower spin.
     start := A_TickCount ; Will be used to determine how much time spent in infinite loop. (ms)
     Press("Enter", 50)
-    DllCall("Sleep", UInt, 500)
+    ;DllCall("Sleep", UInt, 500)
     Loop {
         elapsed := A_TickCount-start
         if (elapsed > 4000) {
