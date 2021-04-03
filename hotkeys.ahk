@@ -48,6 +48,8 @@ f6::Reload ;mainly usable to cancel running action
 ;f5::PauseStyleAntiKick()
 
 ;Meta
-;f7::EmptySession()
-;f8::NetworkAdapter() ;will eventually disable a configured adapter if winapi allows it
-;f9::FirewallRule() ;will eventually toggle firewall rule for gta if winapi allows it
+f10::EmptySession()
+;f8::NetworkAdapterSettings()
+;f9::FirewallSettings()
+;f10::ToggleFirewallRule("gta") ;if you don't want to rename your existing rule, pass its name to the function instead of "gta"
+;f11::ToggleNetworkAdapter("Wi-fi 2")

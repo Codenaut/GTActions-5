@@ -1,44 +1,50 @@
-EmptySession() {
-    return
-}
-;----------------------------------------------
-NetworkAdapter() {
+#include helpers.ahk
+#include Lucky_Wheel.ahk
+
+EmptySession(Duration := 8000) {
+    WinGet, gtapid, PID, Grand Theft Auto V
+    if(!IsProcessSuspended(gtapid)) {
+        SuspendProcess(gtapid)
+        Sleep Duration
+        ResumeProcess(gtapid)
+    }
+
     return
 }
 
-DisableAdapter() {
-    return
-}
-;----------------------------------------------
-FirewallRule() {
+ToggleNetworkAdapter(AdapterName := "Wi-Fi") {
+    out := RunWaitStdout("netsh interface show interface " . AdapterName)
+    matched := RegExMatch(out, "state:\ Enabled")
+    MsgBox, , , %matched%, 2
+
+    if (matched = 0) {
+        RunWaitStdout("netsh interface set interface" . AdapterName . "enable")
+    } else {
+        RunWaitStdout("netsh interface set interface" . AdapterName . "disable")
+    }
+
     return
 }
 
-ToggleFireWallRule() {
-    return
-}
+ToggleFirewallRule(RuleName := "gta") { 
+    out := RunWaitStdout("netsh advfirewall firewall show rule " . RuleName)
+    matched := RegExMatch(out, "Enabled:\ +Yes")
 
-WinCasinoCar() {
-    return
-}
-
-Press(ByRef Butt, Duration:=20)
-{
-    Send, {%Butt% down}
-    Sleep 10
-    Send, {%Butt% up}
-
-    if(Duration > 0) {
-        Sleep %Duration%
+    if (matched = 0) {
+        RunWaitStdout("netsh advfirewall firewall set rule name=" . RuleName . " new enable=yes")
+        ;RunWait, %ComSpec% " /c " "netsh advfirewall firewall set rule name=" . RuleName . " new enable=yes",,Hide
+    } else {
+        RunWaitStdout("netsh advfirewall firewall set rule name=" . RuleName . " new enable=no")
+        ;RunWait, %ComSpec% " /c " "netsh advfirewall firewall set rule name=" . RuleName . " new enable=no",,Hide
     }
     return
 }
 
-Swap(){
-    #WinActivateForce
-    WinActivate Grand Theft Auto V
-    return
-}
+; press before the s button appears after pressing e on wheel
+WinCasinoCar() {
+    Spin2WinCar() ; if this is in the wrong place, use SBoxLocationHelper() to find the coordinates for
+    return        ; Spin2WinCar, e.g.change f12:Spin2WinCar(485, 45, 2693) to f12:Spin2WinCar(<your_x_coords>,<your_y_coords>,<your_delay>)
+}                 ; second : omitted since hotkeys break out of comments in ahk
 
 BusyWaitAntiKick() {
     SetTimer, PressKey, 1000    

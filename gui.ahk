@@ -22,7 +22,7 @@ Gui, Add, Button, gCallMechanic x12 y389 w70 h30 , &Mechanic
 Gui, Add, Button, gCallMorsMutual x92 y389 w70 h30 , &Mors Mutual
 Gui, Add, Button, gCallLester x12 y429 w70 h30 , &Lester
 Gui, Add, Button, gCallPegasus x92 y429 w70 h30 , &Pegasus
-Gui, Add, Button, gCEOUnimpound x12 y439 w280 h-270 , Unimpound
+Gui, Add, Button, gCEOUnimpound x12 y469 w70 h30 , Unimpound
 Gui, Add, Button, gCallLamar x92 y469 w70 h30 , Lamar
 Gui, Add, GroupBox, x2 y509 w170 h100 , Shittery
 Gui, Add, Button, gPassiveMode x12 y669 w150 h30 , &Passive
@@ -36,9 +36,14 @@ Gui, Add, Button, gBusyWaitAntiKick x12 y569 w70 h30 , Anti-Kick 1
 Gui, Add, Button, gPauseAntiKick x92 y569 w70 h30 , Anti-Kick 2 ;maybe direct Pause
 Gui, Add, Button, gPussyOut x12 y529 w70 h30 , Sudoku
 Gui, Add, Button, gEmptySession x12 y729 w150 h30 , Empty Session
-Gui, Add, Button, gNetworkAdapter x12 y769 w150 h30 , Network Adapter
-Gui, Add, Button, gFirewallRule x12 y809 w150 h30 , Firewall Rule
-Gui, Add, Button, gWinCasinoCar x12 y959 w150 h30 , Win Casino Car
-Gui, Add, GroupBox, x2 y709 w170 h140 , Meeta
+Gui, Add, Button, gToggleNetworkAdapter x12 y769 w150 h30 , Toggle Network Adapter
+Gui, Add, Button, gToggleFirewallRule x12 y809 w150 h30 , Toggle Firewall Rule
+Gui, Add, Button, gWinCasinoCar x12 y959 w100 h30, Win Casino Car
+Gui, Add, GroupBox, x2 y709 w170 h140, Meeta
+Gui, Add, Button, x132 y919 w30 h30 gKillGTAV, KILL
+Gui, Add, Button, x12 y919 w70 h30 gSBoxLocationHelper, SBox Helper
 Gui, Show, x3432 y1 h1006 w181, GTActions 5: Online ;gtao on main, hotkeys window on left side of monitor to my right
+;Gui, Show, h1006 w181 Center, GTActions 5: Online
 return
+
+#include helpers.ahk
