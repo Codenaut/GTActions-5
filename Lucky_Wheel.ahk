@@ -46,27 +46,22 @@ KillGTAV() {
     Return
 }
 
-SBoxLocationHelper() {
-    Tooltip
-    CoordMode, ToolTip, Screen ; makes tooltip to appear at position, relative to screen.
-    CoordMode, Mouse, Screen ; makes mouse coordinates to be relative to screen.
-    MouseGetPos xx, yy ; get mouse x and y position, store as %xx% and %yy%
-    tooltip Put the cursor over the white area in a wheel spin dialogue. Cursor coordinates for your setup: x = %xx%`, y = %yy%., 0, 0 ; display tooltip of %xx% %yy% at coordinates x0 y0.
-    ;SetTimer, RemoveToolTip, 2000
-    i := 0
-    loop {
-        if (i > 20) {
-            Break
-        }
-        MouseGetPos xx, yy
-        Sleep 500
-        i++
-    }
-    ;SetCapsLockState, Off
-    Return
-}
+;; make this junk into a function
+
+SBoxLocationHelper:
+    CoordMode, ToolTip, screen
+    SetTimer, WatchCursor, 100
+    SetTimer, RemoveToolTip, 7500
+return
+
+WatchCursor:
+    CoordMode, mouse, Screen ; Coordinates are relative to the desktop (entire screen).
+    MouseGetPos, x_1, y_1, id_1, control_1
+    tooltip Put the cursor over the white area `nin a wheel spin dialogue. `nCursor coordinates for your setup: x = %x_1%`, y = %y_1%., % A_ScreenWidth, % A_ScreenHeight-50
+return
 
 RemoveToolTip:
     ToolTip
+    SetTimer, WatchCursor, OFF
 return
 
