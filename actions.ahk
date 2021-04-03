@@ -237,7 +237,7 @@ CEOThermalVision()
     return
 }
 
-RegisterMC()
+BecomeCEO()
 {
     Swap()
     Press("m", 100)
@@ -253,7 +253,7 @@ RegisterMC()
     return
 }
 
-BecomeCEO()
+RegisterMC()
 {
     Swap()
     Press("m", 100)

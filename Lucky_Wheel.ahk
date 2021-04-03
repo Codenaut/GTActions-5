@@ -52,8 +52,17 @@ SBoxLocationHelper() {
     CoordMode, Mouse, Screen ; makes mouse coordinates to be relative to screen.
     MouseGetPos xx, yy ; get mouse x and y position, store as %xx% and %yy%
     tooltip Put the cursor over the white area in a wheel spin dialogue. Cursor coordinates for your setup: x = %xx%`, y = %yy%., 0, 0 ; display tooltip of %xx% %yy% at coordinates x0 y0.
-    SetTimer, RemoveToolTip, 2000
-    SetCapsLockState, Off
+    ;SetTimer, RemoveToolTip, 2000
+    i := 0
+    loop {
+        if (i > 20) {
+            Break
+        }
+        MouseGetPos xx, yy
+        Sleep 500
+        i++
+    }
+    ;SetCapsLockState, Off
     Return
 }
 

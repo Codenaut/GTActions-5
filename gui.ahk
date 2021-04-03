@@ -1,5 +1,5 @@
-; Generated using SmartGUI Creator 4.0
 Gui, New, +Resize -MinimizeBox -MaximizeBox, Penis
+Gui, Font, s10 w700, Arial
 Gui, Add, Button, x12 y199 w130 h-160 , Button
 Gui, Add, GroupBox, x2 y-1 w170 h310 , CEO
 Gui, Add, Button, gBecomeCEO x12 y19 w70 h30 , R&egister
@@ -42,6 +42,7 @@ Gui, Add, Button, gWinCasinoCar x12 y959 w100 h30, Win Casino Car
 Gui, Add, GroupBox, x2 y709 w170 h140, Meeta
 Gui, Add, Button, x132 y919 w30 h30 gKillGTAV, KILL
 Gui, Add, Button, x12 y919 w70 h30 gSBoxLocationHelper, SBox Helper
+Gui, Font
 Gui, Show, x3432 y1 h1006 w181, GTActions 5: Online ;gtao on main, hotkeys window on left side of monitor to my right
 ;Gui, Show, h1006 w181 Center, GTActions 5: Online
 return
