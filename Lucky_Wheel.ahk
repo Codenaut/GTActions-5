@@ -50,18 +50,16 @@ KillGTAV() {
     Return
 }
 
-;; make this junk into a function
-
-SBoxLocationHelper:
-    CoordMode, ToolTip, screen
+CoordinateHelper() {
     SetTimer, WatchCursor, 100
     SetTimer, RemoveToolTip, 7500
-return
+}
 
 WatchCursor:
     CoordMode, mouse, Screen ; Coordinates are relative to the desktop (entire screen).
+    CoordMode, ToolTip, screen
     MouseGetPos, x_1, y_1, id_1, control_1
-    tooltip Put the cursor over the white area `nin a wheel spin dialogue. `nCursor coordinates for your setup: x = %x_1%`, y = %y_1%., % A_ScreenWidth, % A_ScreenHeight-50
+    tooltip Put the cursor over the white area `nin a wheel spin dialogue. `nCursor coordinates for your setup: x = %x_1%`, y = %y_1%, x_1+20, y_1+20
 return
 
 RemoveToolTip:

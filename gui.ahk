@@ -37,7 +37,8 @@ Gui, Add, Button, gEmptySession x12 y719 w190 h30, Suspend GTA
 Gui, Add, Checkbox, gToggleNetworkAdapter x12 y759 w190 h30, Disable Network Adapter
 Gui, Add, Checkbox, gToggleFirewallRule x12 y799 w190 h30, Enable Firewall Rule
 Gui, Add, GroupBox, x2 y699 w210 h140, Meeta
-Gui, Add, Button, gSBoxLocationHelper x12 y849 w90 h30, Coord Helper
+Gui, Add, Button, gCoordinateHelper x12 y849 w90 h30, Coord Helper
+Gui, Add, Button, gRemoveToolTip x104 y849 w38 h30, X
 Gui, Add, Button, gWinCasinoCar x12 y889 w145 h30, Win Casino Car
 Gui, Add, Button, gKillGTAV x167 y889 w38 h30, KILL
 Gui, Font
