@@ -17,7 +17,11 @@ SendMode Input
 
 CoordMode, ToolTip, Screen
 
-Spin2WinCar(xx := 485, yy := 45, delay := 2693) { ;Edit this value to change the spinning speed: higher value = slower spin.
+Spin2WinCar() {
+    IniRead, duration, config.ini, Config, LuckyWheelDurationMs, 2693
+    IniRead, xx, config.ini, Config, LuckyWheelX, 485
+    IniRead, yy, config.ini, Config, LuckyWheelY, 45
+
     start := A_TickCount ; Will be used to determine how much time spent in infinite loop. (ms)
     Press("Enter", 50)
     ;DllCall("Sleep", UInt, 500)

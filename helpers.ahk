@@ -1,24 +1,24 @@
-SuspendProcess(pid) {
-    hProcess := DllCall("OpenProcess", "UInt", 0x1F0FFF, "Int", 0, "Int", pid)
-    If (hProcess) {
-        DllCall("ntdll.dll\NtSuspendProcess", "Int", hProcess)
-        DllCall("CloseHandle", "Int", hProcess)
-    }
+Process_Suspend(PID_or_Name){
+    PID := (InStr(PID_or_Name,".")) ? ProcExist(PID_or_Name) : PID_or_Name
+    h:=DllCall("OpenProcess", "uInt", 0x1F0FFF, "Int", 0, "Int", pid)
+    If !h   
+        Return -1
+    DllCall("ntdll.dll\NtSuspendProcess", "Int", h)
+    DllCall("CloseHandle", "Int", h)
 }
 
-ResumeProcess(pid) {
-    hProcess := DllCall("OpenProcess", "UInt", 0x1F0FFF, "Int", 0, "Int", pid)
-    If (hProcess) {
-        DllCall("ntdll.dll\NtResumeProcess", "Int", hProcess)
-        DllCall("CloseHandle", "Int", hProcess)
-    }
+Process_Resume(PID_or_Name){
+    PID := (InStr(PID_or_Name,".")) ? ProcExist(PID_or_Name) : PID_or_Name
+    h:=DllCall("OpenProcess", "uInt", 0x1F0FFF, "Int", 0, "Int", pid)
+    If !h   
+        Return -1
+    DllCall("ntdll.dll\NtResumeProcess", "Int", h)
+    DllCall("CloseHandle", "Int", h)
 }
 
-IsProcessSuspended(pid) {
-    For thread in ComObjGet("winmgmts:").ExecQuery("Select * from Win32_Thread WHERE ProcessHandle = " pid)
-        If (thread.ThreadWaitReason != 5)
-            Return False
-    Return True
+ProcExist(PID_or_Name=""){
+    Process, Exist, % (PID_or_Name="") ? DllCall("GetCurrentProcessID") : PID_or_Name
+    Return Errorlevel
 }
 
 RunWaitStdout(command) {
@@ -27,16 +27,7 @@ RunWaitStdout(command) {
     return exec.StdOut.ReadAll()
 }
 
-ButtonToggle(ButtonVar, EnableButt := 0) {
-    if (EnableButt) {
-        GuiControl, Enable, ButtonVar
-    } else {
-        GuiControl, Disable, ButtonVar
-    }
-}
-
-Press(byRef Butt, Duration:=20)
-{
+Press(byRef Butt, Duration:=30) {
     Send, {%Butt% down}
     Sleep 20
     Send, {%Butt% up}
@@ -47,7 +38,7 @@ Press(byRef Butt, Duration:=20)
     return
 }
 
-Swap(){
+Swap() {
     #WinActivateForce
     WinActivate Grand Theft Auto V
     return

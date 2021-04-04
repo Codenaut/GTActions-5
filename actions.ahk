@@ -1,42 +1,39 @@
 #include helpers.ahk
 #include Lucky_Wheel.ahk
 
-EmptySession(Duration := 8000) {
-    WinGet, gtapid, PID, Grand Theft Auto V
-    if(!IsProcessSuspended(gtapid)) {
-        SuspendProcess(gtapid)
-        Sleep Duration
-        ResumeProcess(gtapid)
-    }
-
+EmptySession() {
+    Process_Suspend("GTA5.exe")
+    Sleep, 8000
+    Process_Resume("GTA5.exe")
     return
 }
 
-ToggleNetworkAdapter(AdapterName := "Wi-Fi") {
-    out := RunWaitStdout("netsh interface show interface " . AdapterName)
-    matched := RegExMatch(out, "state:\ Enabled")
-    MsgBox, , , %matched%, 2
+ToggleNetworkAdapter() {
+    IniRead, NetworkAdapterName, config.ini, Config, NetworkAdapterName, "Wi-fi"
 
-    if (matched = 0) {
-        RunWaitStdout("netsh interface set interface" . AdapterName . "enable")
+    out := RunWaitStdout("netsh interface show interface " . NetworkAdapterName)
+    isEnabled := RegExMatch(out, "\s+Admin.*:\s+Enabled")
+
+    if (isEnabled = 0) {
+        RunWaitStdout("netsh interface set interface " . NetworkAdapterName . " enable")
     } else {
-        RunWaitStdout("netsh interface set interface" . AdapterName . "disable")
+        RunWaitStdout("netsh interface set interface " . NetworkAdapterName . " disable")
     }
 
     return
 }
 
-ToggleFirewallRule(RuleName := "gta") { 
-    out := RunWaitStdout("netsh advfirewall firewall show rule " . RuleName)
+ToggleFirewallRule() { 
+    IniRead, FirewallRuleName, config.ini, Config, FirewallRuleName, "gta"
+    out := RunWaitStdout("netsh advfirewall firewall show rule " . FirewallRuleName)
+
     matched := RegExMatch(out, "Enabled:\ +Yes")
-
     if (matched = 0) {
-        RunWaitStdout("netsh advfirewall firewall set rule name=" . RuleName . " new enable=yes")
-        ;RunWait, %ComSpec% " /c " "netsh advfirewall firewall set rule name=" . RuleName . " new enable=yes",,Hide
+        RunWaitStdout("netsh advfirewall firewall set rule name=" . FirewallRuleName . " new enable=yes")
     } else {
-        RunWaitStdout("netsh advfirewall firewall set rule name=" . RuleName . " new enable=no")
-        ;RunWait, %ComSpec% " /c " "netsh advfirewall firewall set rule name=" . RuleName . " new enable=no",,Hide
+        RunWaitStdout("netsh advfirewall firewall set rule name=" . FirewallRuleName . " new enable=no")
     }
+
     return
 }
 
@@ -237,7 +234,7 @@ CEOThermalVision()
     return
 }
 
-BecomeCEO()
+RegisterMC()
 {
     Swap()
     Press("m", 100)
@@ -253,7 +250,7 @@ BecomeCEO()
     return
 }
 
-RegisterMC()
+BecomeCEO()
 {
     Swap()
     Press("m", 100)
